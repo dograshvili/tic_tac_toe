@@ -7,7 +7,8 @@ import React from 'react';
 import {AppRegistry, Animated, View} from 'react-native';
 import App from './src/components/App';
 import {name as appName} from './app.json';
-import Styles from './src/styles/App'
+import Styles from './styles'
+
 class RApp extends React.Component {
 
     constructor(props) {
