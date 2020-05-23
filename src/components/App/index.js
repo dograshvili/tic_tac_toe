@@ -68,19 +68,15 @@ export default class App extends React.Component {
     };
 
     handlePlay = (i, j) => {
-        // const { game } = this.state;
-        // const { board, currentPlayer, nextToPlay } = game;
-        // if (!board[i][j]) {
-        //     let nextPlayer = nextToPlay[currentPlayer];
-        //     let symbol = game[currentPlayer]['symbol'];
-        //     board[i][j] = symbol;
-        //     this.updateState({
-        //         game: {
-        //             currentPlayer: nextPlayer,
-        //             board: board
-        //         }
-        //     })
-        // }
+        const { board, currentPlayer, playerSymbol, aiSymbol } = this.state;
+        if (!board[i][j]) {
+            let nextPlayer = currentPlayer === "player" ? "ai" : "player";
+            board[i][j] = currentPlayer === "player" ? playerSymbol : aiSymbol;
+            this.updateState({
+                currentPlayer: nextPlayer,
+                board: board
+            })
+        }
     }
 
     render() {
