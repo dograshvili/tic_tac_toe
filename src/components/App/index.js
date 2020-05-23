@@ -9,37 +9,27 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            game: {
-                over: false,
-                winner: "none",
-                player: {
-                    name: "Guest",
-                    sysName: "player",
-                    symbol: "X"
-                },
-                com: {
-                    name: "AI",
-                    sysName: "ai",
-                    symbol: "O"
-                },
-                board: [
-                    ["","",""],
-                    ["","",""],
-                    ["","",""]
-                ]
-            },
-            animations: {
-                time: 500,
-                header: new Animated.Value(0),
-                board: new Animated.Value(0),
-            }
+            over: false,
+            winner: "none",
+            playerName: "Guest",
+            playerSymbol: "X",
+            aiName: "AI",
+            aiSymbol: "O",
+            currentPlayer: "player",
+            board: [
+                ["","",""],
+                ["","",""],
+                ["","",""]
+            ],
+            animationTime: 500,
+            animationHeader: new Animated.Value(0),
+            animationBody: new Animated.Value(0)
         }
     }
 
     componentDidMount = () => {
         this.backHandler = BackHandler.addEventListener("hardwareBackPress", this.promtExitApp);
         this.startAnimations();
-        console.log( this.state.game.board );
     }
 
     componentWillUnmount() {
@@ -49,16 +39,15 @@ export default class App extends React.Component {
     updateState = state => this.setState(state)
 
     startAnimations = () => {
-        const { animations } = this.state;
         Animated.sequence([
-            Animated.timing(animations.header, {
+            Animated.timing(this.state.animationHeader, {
                 toValue: 1,
-                duration: animations.time,
+                duration: this.state.animationTime,
                 useNativeDriver: true
             }),
-            Animated.timing(animations.board, {
+            Animated.timing(this.state.animationBody, {
                 toValue: 1,
-                timing: animations.time,
+                timing: this.state.animationTime,
                 useNativeDriver: true
             })
         ]).start();
@@ -77,25 +66,38 @@ export default class App extends React.Component {
     };
 
     handlePlay = (i, j) => {
-        Alert.alert("", `You played on ${i},${j}`);
+        // const { game } = this.state;
+        // const { board, currentPlayer, nextToPlay } = game;
+        // if (!board[i][j]) {
+        //     let nextPlayer = nextToPlay[currentPlayer];
+        //     let symbol = game[currentPlayer]['symbol'];
+        //     board[i][j] = symbol;
+        //     this.updateState({
+        //         game: {
+        //             currentPlayer: nextPlayer,
+        //             board: board
+        //         }
+        //     })
+        // }
     }
 
     render() {
-        const { animations } = this.state;
         return (
             <View style={Styles.container}>
                 <Animated.View
-                    style={[Styles.header, {opacity: animations.header}]}
+                    style={[Styles.header, {opacity: this.state.animationHeader}]}
                 >
                     <Header
-                        player={this.state.game.player}
+                        player={{
+                            name: this.state.playerName
+                        }}
                     />
                 </Animated.View>
                 <Animated.View
-                    style={[Styles.containerBoard, {opacity: animations.board}]}
+                    style={[Styles.containerBoard, {opacity: this.animationBody}]}
                 >
                     <Board
-                        board={this.state.game.board}
+                        board={this.state.board}
                         handlePlay={this.handlePlay}
                     />
                 </Animated.View>
