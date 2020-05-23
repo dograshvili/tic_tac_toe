@@ -8,6 +8,7 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
+        // TODO: Change the state object (make it more complex)
         this.state = {
             over: false,
             winner: "none",
