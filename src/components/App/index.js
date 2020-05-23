@@ -11,7 +11,7 @@ export default class App extends React.Component {
         super(props);
         // TODO: Change the state object (make it more complex)
         this.state = {
-            over: false,
+            isGameOver: false,
             winner: "none",
             playerName: "Guest",
             playerSymbol: "X",
@@ -68,8 +68,8 @@ export default class App extends React.Component {
     };
 
     handlePlay = (i, j) => {
-        const { board, currentPlayer, playerSymbol, aiSymbol } = this.state;
-        if (!board[i][j]) {
+        const { isGameOver, board, currentPlayer, playerSymbol, aiSymbol } = this.state;
+        if (!isGameOver && !board[i][j]) {
             let nextPlayer = currentPlayer === "player" ? "ai" : "player";
             board[i][j] = currentPlayer === "player" ? playerSymbol : aiSymbol;
             this.updateState({
