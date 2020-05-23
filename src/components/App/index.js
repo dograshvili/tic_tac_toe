@@ -3,6 +3,7 @@ import { StyleSheet, Text, Alert, View, BackHandler, Animated } from 'react-nati
 import { ButtonGroup } from 'react-native-elements'
 import Header from '../Header';
 import Board from '../Board';
+import Styles from '../../styles/App';
 
 export default class App extends React.Component {
 
@@ -107,22 +108,3 @@ export default class App extends React.Component {
     }
 
 }
-
-const Styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    header: {
-        width: "100%",
-        alignItems: "center",
-        backgroundColor: "#3D6DCC",
-        padding: 10,
-        borderRadius: 5
-    },
-    containerBoard: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 20
-    }
-})

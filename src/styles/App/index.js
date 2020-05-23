@@ -4,10 +4,17 @@ export default Styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    img: {
+    header: {
+        width: "100%",
+        alignItems: "center",
+        backgroundColor: "#3D6DCC",
+        padding: 10,
+        borderRadius: 5
+    },
+    containerBoard: {
         flex: 1,
-        alignSelf: "stretch",
-        width: undefined,
-        height: undefined
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 20
     }
 })
