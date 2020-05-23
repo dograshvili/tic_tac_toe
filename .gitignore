@@ -1,0 +1,14 @@
+# Files to be ignored
+android
+app.json
+babel.config.js
+.buckconfig
+.eslintrc.js
+.flowconfig
+ios
+metro.config.js
+node_modules
+package*
+.prettierrc.js
+__tests__
+.watchmanconfig
