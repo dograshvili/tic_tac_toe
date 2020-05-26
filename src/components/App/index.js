@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, View, BackHandler, Animated } from 'react-native';
+import { Alert, View, BackHandler, Animated, Text } from 'react-native';
 import Header from '../Header';
 import Board from '../Board';
 import Styles from '../../styles/App';
@@ -12,7 +12,6 @@ export default class App extends React.Component {
         // TODO: Change the state object (make it more complex)
         this.state = {
             isGameOver: false,
-            blWinner: false,
             winner: "none",
             playerName: "Guest",
             playerSymbol: "O",
@@ -36,10 +35,9 @@ export default class App extends React.Component {
     }
 
     componentDidUpdate = () => {
-        const { isGameOver, board, currentPlayer, playerSymbol, aiSymbol, shouldAIPlay } = this.state;
-        if (!isGameOver && currentPlayer === "ai") {
-            let move = AI.BestMove(board, aiSymbol, playerSymbol, aiSymbol);
-            this.handlePlay(move.i, move.j);
+        const { isGameOver, currentPlayer } = this.state;
+        if (!isGameOver && currentPlayer === "ai" && this.blMovesLeft()) {
+            setTimeout(this.aiMakemove, 100);
         }
     }
 
@@ -80,48 +78,65 @@ export default class App extends React.Component {
         return !this.state.board[i][j] ? true: false;
     }
 
-    checkWinner = () => {
-
+    aiMakemove = () => {
+        const { board, playerSymbol, aiSymbol } = this.state;
+        let move = AI.BestMove(board, aiSymbol, playerSymbol, aiSymbol);
+        this.handlePlay(move.i, move.j);
     }
 
     handlePlay = (i, j) => {
-        const { isGameOver, board, currentPlayer, playerSymbol, aiSymbol, shouldAIPlay } = this.state;
-        let nState = {};
+        const { isGameOver, board, currentPlayer, playerSymbol, aiSymbol } = this.state;
         if (!isGameOver && !board[i][j] && this.blMovesLeft()) {
             let nextPlayer = currentPlayer === "player" ? "ai" : "player";
             board[i][j] = currentPlayer === "player" ? playerSymbol : aiSymbol;
-            nState = {
+            this.updateState({
                 currentPlayer: nextPlayer,
                 board: board
-            };
+            });
+            if (!this.blMovesLeft()) {
+                this.updateState({
+                    isGameOver: true
+                });
+            }
             if (AI.Winner(AI.Convert2DT1D(board), playerSymbol)) {
-                nState = {
+                this.updateState({
                     isGameOver: true,
                     winner: "player"
-                };
+                });
             } else if (AI.Winner(AI.Convert2DT1D(board), aiSymbol)) {
-                nState = {
+                this.updateState({
                     isGameOver: true,
                     winner: "ai"
-                }
-            } else {
-                if (!this.blMovesLeft()) {
-                    nState = {
-                        isGameOver: true
-                    }
-                }
-                // else {
-                    // If currentPlayer is 'player' then the AI must make a move
-                    // if (nextPlayer === "ai") {
-                    // }
-                // }
+                });
             }
-            this.updateState(nState);
         }
     }
 
 
     render() {
+        const { playerName, board, isGameOver, winner } = this.state;
+        let winnerInfo = <></>;
+        if (isGameOver) {
+            if (winner === "ai") {
+                winnerInfo = (
+                    <Text style={[Styles.textInfo, {color: 'crimson'}]}>
+                       You Lost
+                    </Text>
+                );
+            } else if (winner === "player") {
+                winnerInfo = (
+                    <Text style={[Styles.textInfo, {color: 'limegreen'}]}>
+                       You Won
+                    </Text>
+                );
+            } else {
+                winnerInfo = (
+                    <Text style={[Styles.textInfo, {color: 'palegoldenrod'}]}>
+                       It's a Tie
+                    </Text>
+                );
+            }
+        }
         return (
             <View style={Styles.container}>
                 <Animated.View
@@ -129,15 +144,16 @@ export default class App extends React.Component {
                 >
                     <Header
                         player={{
-                            name: this.state.playerName
+                            name: playerName
                         }}
                     />
                 </Animated.View>
                 <Animated.View
                     style={[Styles.containerBoard, {opacity: this.animationBody}]}
                 >
+                    {winnerInfo}
                     <Board
-                        board={this.state.board}
+                        board={board}
                         handlePlay={this.handlePlay}
                     />
                 </Animated.View>

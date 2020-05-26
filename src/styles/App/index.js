@@ -11,10 +11,15 @@ export default Styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5
     },
+    textInfo: {
+        textAlign: "center",
+        fontSize: 50,
+        marginBottom: 30
+    },
     containerBoard: {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 20
+        marginTop: 10
     }
 })
