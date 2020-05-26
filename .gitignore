@@ -12,3 +12,5 @@ package*
 .prettierrc.js
 __tests__
 .watchmanconfig
+src/helpers/Bot
+src/helpers/AI

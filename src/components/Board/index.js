@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonGroup } from 'react-native-elements'
+import { ButtonGroup, TouchableOpacity } from 'react-native-elements'
 import Styles from '../../styles/Board'
 
 export default class Board extends React.Component {
