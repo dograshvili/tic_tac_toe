@@ -1,31 +1,26 @@
 import React from 'react';
-import { Alert, View, BackHandler, Animated, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
+import Styles from '../../styles/Info';
+
+const PlayAgain = () => (
+    <Text style={Styles.txt2}>
+        Tap to play again
+    </Text>
+);
+
+const WinLoseTie = (props) => (
+    <Text style={Styles.txt1}>
+        {props.msg}
+    </Text>
+);
 
 class Won extends React.Component {
     render() {
         return(
-            <View style={{
-                alignItems: "center",
-                backgroundColor: "#1BA39C",
-            }}>
-                <View style={{
-                    paddingVertical: 20,
-                    paddingHorizontal: 20
-                }}>
-                    <Text style={{
-                        textAlign: "center",
-                        fontSize: 40,
-                        color: "white"
-                    }}>
-                    You Win
-                    </Text>
-                    <Text style={{
-                        color: "white",
-                        marginTop: 5,
-                        fontSize: 25
-                    }}>
-                        Tap to play again
-                    </Text>
+            <View style={Styles.container1Won}>
+                <View style={Styles.container2}>
+                    <WinLoseTie msg="You Win" />
+                    <PlayAgain />
                 </View>
             </View>
         )
@@ -35,28 +30,10 @@ class Won extends React.Component {
 class Lost extends React.Component {
     render() {
         return(
-            <View style={{
-                alignItems: "center",
-                backgroundColor: "#E7505A",
-            }}>
-                <View style={{
-                    paddingVertical: 20,
-                    paddingHorizontal: 20
-                }}>
-                    <Text style={{
-                        textAlign: "center",
-                        fontSize: 40,
-                        color: "white"
-                    }}>
-                    You Lost
-                    </Text>
-                    <Text style={{
-                        color: "white",
-                        marginTop: 5,
-                        fontSize: 25
-                    }}>
-                        Tap to play again
-                    </Text>
+            <View style={Styles.container1Lost}>
+                <View style={Styles.container2}>
+                    <WinLoseTie msg="You Lost" />
+                    <PlayAgain />
                 </View>
             </View>
         )
@@ -67,28 +44,10 @@ class Lost extends React.Component {
 class Tie extends React.Component {
     render() {
         return(
-            <View style={{
-                alignItems: "center",
-                backgroundColor: "#E87E04",
-            }}>
-                <View style={{
-                    paddingVertical: 20,
-                    paddingHorizontal: 20
-                }}>
-                    <Text style={{
-                        textAlign: "center",
-                        fontSize: 40,
-                        color: "white"
-                    }}>
-                    It's tie
-                    </Text>
-                    <Text style={{
-                        color: "white",
-                        marginTop: 5,
-                        fontSize: 25
-                    }}>
-                        Tap to play again
-                    </Text>
+            <View style={Styles.container1Tie}>
+                <View style={Styles.container2}>
+                    <WinLoseTie msg="It's tie" />
+                    <PlayAgain />
                 </View>
             </View>
         )
