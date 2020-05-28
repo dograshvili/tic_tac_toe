@@ -7,7 +7,7 @@ export default Styles = StyleSheet.create({
     header: {
         width: "100%",
         alignItems: "center",
-        backgroundColor: "#3D6DCC",
+        backgroundColor: "#67809F",
         padding: 10,
         borderRadius: 5
     },

@@ -1,11 +1,10 @@
 import React from 'react';
 import { Alert, View, BackHandler, Animated, Text, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
 import Header from '../Header';
 import Board from '../Board';
 import Styles from '../../styles/App';
 import AI from '../../helpers/AI';
-import INIT_STATE from '../../helpers/General';
+import { Lost, Won, Tie } from '../Info';
 
 export default class App extends React.Component {
 
@@ -134,56 +133,11 @@ export default class App extends React.Component {
         let winnerInfo = <></>;
         if (isGameOver) {
             if (winner === "ai") {
-                winnerInfo = (
-                    <View style={{
-                        marginTop: 20,
-                        alignItems: "center"
-                    }}>
-                        <Text style={[Styles.textInfo, {color: 'crimson'}]}>
-                        You Lost
-                        </Text>
-                        <Text style={{
-                            marginTop: 5,
-                            fontSize: 25
-                        }}>
-                            Tap to Restart
-                        </Text>
-                    </View>
-                );
+                winnerInfo = <Lost />;
             } else if (winner === "player") {
-                winnerInfo = (
-                    <View style={{
-                        marginTop: 20,
-                        alignItems: "center"
-                    }}>
-                        <Text style={[Styles.textInfo, {color: 'limegreen'}]}>
-                            You Won
-                        </Text>
-                        <Text style={{
-                            marginTop: 5,
-                            fontSize: 25
-                        }}>
-                            Tap to Restart
-                        </Text>
-                    </View>
-                );
+                winnerInfo = <Won />;
             } else {
-                winnerInfo = (
-                    <View style={{
-                        marginTop: 20,
-                        alignItems: "center"
-                    }}>
-                        <Text style={[Styles.textInfo, {color: 'palegoldenrod'}]}>
-                            It's a Tie
-                        </Text>
-                        <Text style={{
-                            marginTop: 5,
-                            fontSize: 25
-                        }}>
-                            Tap to Restart
-                        </Text>
-                    </View>
-                );
+                winnerInfo = <Tie />;
             }
         }
         return (
@@ -224,40 +178,6 @@ export default class App extends React.Component {
                         />
                     </Animated.View>
                 </View>
-
-
-                {/* <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={isGameOver}
-                    >
-                    <View style={{
-                        flex: 1,
-                        justifyContent: "flex-end",
-                        alignItems: "center"
-                    }}>
-                        <View style={{
-                            margin: 20,
-                            alignItems: "center",
-                            shadowColor: "#000",
-                            shadowOffset: {
-                            width: 0,
-                            height: 2
-                            },
-                            shadowOpacity: 0.25,
-                            shadowRadius: 3.84,
-                            elevation: 5
-                        }}>
-                            <Button
-                                title="Rematch"
-                                type="outline"
-                                style={{
-                                    width: "80%"
-                                }}
-                            />
-                        </View>
-                    </View>
-                </Modal> */}
             </>
         )
     }
