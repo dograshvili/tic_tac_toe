@@ -13,8 +13,7 @@ export default Styles = StyleSheet.create({
     },
     textInfo: {
         textAlign: "center",
-        fontSize: 50,
-        marginBottom: 30
+        fontSize: 45
     },
     containerBoard: {
         flex: 1,
