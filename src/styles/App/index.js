@@ -11,10 +11,6 @@ export default Styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5
     },
-    textInfo: {
-        textAlign: "center",
-        fontSize: 45
-    },
     containerBoard: {
         flex: 1,
         alignItems: "center",

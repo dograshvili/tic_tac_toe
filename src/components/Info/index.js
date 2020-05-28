@@ -12,9 +12,11 @@ class Won extends React.Component {
                     paddingVertical: 20,
                     paddingHorizontal: 20
                 }}>
-                    <Text style={[Styles.textInfo, {
+                    <Text style={{
+                        textAlign: "center",
+                        fontSize: 40,
                         color: "white"
-                    }]}>
+                    }}>
                     You Win
                     </Text>
                     <Text style={{
@@ -41,9 +43,11 @@ class Lost extends React.Component {
                     paddingVertical: 20,
                     paddingHorizontal: 20
                 }}>
-                    <Text style={[Styles.textInfo, {
+                    <Text style={{
+                        textAlign: "center",
+                        fontSize: 40,
                         color: "white"
-                    }]}>
+                    }}>
                     You Lost
                     </Text>
                     <Text style={{
@@ -71,9 +75,11 @@ class Tie extends React.Component {
                     paddingVertical: 20,
                     paddingHorizontal: 20
                 }}>
-                    <Text style={[Styles.textInfo, {
+                    <Text style={{
+                        textAlign: "center",
+                        fontSize: 40,
                         color: "white"
-                    }]}>
+                    }}>
                     It's tie
                     </Text>
                     <Text style={{
