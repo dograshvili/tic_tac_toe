@@ -144,10 +144,10 @@ export default class App extends React.Component {
             <>
                 <View style={Styles.container}>
                     <Animated.View
-                        style={[{
-                            minHeigh: "20%",
-                            maxHeigh: "20%",
-                        }, Styles.header, {opacity: this.state.animationHeader}]}
+                        style={{
+                            ...Styles.header,
+                            opacity: this.state.animationHeader
+                        }}
                     >
                         <Header
                             player={{
@@ -155,11 +155,7 @@ export default class App extends React.Component {
                             }}
                         />
                     </Animated.View>
-                    <View style={{
-                        minHeigh: "20%",
-                        maxHeigh: "20%",
-                        justifyContent: "center"
-                    }}>
+                    <View>
                         <TouchableOpacity
                             onPress={this.gameRestart}
                         >
@@ -167,10 +163,7 @@ export default class App extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <Animated.View
-                        style={[{
-                            minHeigh: "60%",
-                            maxHeigh: "60%",
-                        }, Styles.containerBoard, {opacity: this.animationBody}]}
+                        style={{...Styles.containerBoard, opacity: this.animationBody}}
                     >
                         <Board
                             board={board}
